@@ -1,0 +1,52 @@
+{
+  "root": "apps/cookbook-api",
+  "sourceRoot": "apps/cookbook-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/cookbook-api",
+        "main": "apps/cookbook-api/src/main.ts",
+        "tsConfig": "apps/cookbook-api/tsconfig.app.json",
+        "assets": ["apps/cookbook-api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/cookbook-api/src/environments/environment.ts",
+              "with": "apps/cookbook-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "cookbook-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/cookbook-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/cookbook-api"],
+      "options": {
+        "jestConfig": "apps/cookbook-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

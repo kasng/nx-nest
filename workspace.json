@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "cookbook": "apps/cookbook",
+    "cookbook-api": "apps/cookbook-api",
+    "cookbook-e2e": "apps/cookbook-e2e"
+  }
+}
